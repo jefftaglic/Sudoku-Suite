@@ -57,6 +57,112 @@ namespace Sudokube
             // todo - generation function here
         }
 
+        static void BetterPrintRowTop()
+        {
+            string top_t = "╦";
+            string top_bar = "═══";
+
+            string right_top_corner = "╗";
+            string left_top_corner = "╔";
+
+            Console.Write(left_top_corner + top_bar);
+
+            for (int col = 2; col <= 8; col++)
+            {
+                Console.Write(top_t + top_bar);
+            }
+
+            Console.Write(top_t + top_bar + right_top_corner + "\n");
+        }
+
+        static void BetterPrintRowNumbers(Cell[] rowCells)
+        {
+            string vert_bar = "║";
+
+            for (int col = 1; col <= 9; col++)
+            {
+                Console.Write(vert_bar + " ");
+                Console.Write(rowCells[col - 1].FillNumber + " ");
+            }
+
+            Console.Write(vert_bar + "\n");
+
+        }
+
+        static void BetterPrintRowMid()
+        {
+            string left_t = "╠"; 
+            string cross = "╬";
+            string hori_bar = "═══";
+            string right_t = "╣";
+
+            Console.Write(left_t + hori_bar);
+
+            for (int col = 2; col <= 8; col++)
+            {
+                Console.Write(cross + hori_bar);
+            }
+
+            Console.Write(cross + hori_bar + right_t + "\n");
+            
+        }
+
+        static void BetterPrintRowBot()
+        {
+            string bot_t = "╩";
+            string hori_bar = "═══";
+            string right_bot_corner = "╝";
+            string left_bot_corner = "╚";
+
+            Console.Write(left_bot_corner + hori_bar);
+            
+            for (int col = 2; col <= 8; col++)
+            {
+                Console.Write(bot_t + hori_bar );
+            }
+
+            Console.Write(bot_t + hori_bar + right_bot_corner + "\n");
+
+        }
+
+        public void BetterPrintFullPuzzleZ() // full print along the z-axis
+        {
+            for (int z_axis = 0; z_axis < 9; z_axis++)
+            {
+
+                int z_axis_rep = z_axis + 1;
+                Console.WriteLine(" z = " + z_axis_rep);
+
+                BetterPrintRowTop();
+
+                for (int y_axis = 0; y_axis < 9; y_axis++)
+                {
+                    Cell[] curr_row = new Cell[9];
+                    for (int x_axis = 0; x_axis < 9; x_axis++)
+                    {
+                        Cell curr_cell = MainArray[x_axis, y_axis, z_axis];
+                        curr_row[x_axis] = curr_cell;
+                    }
+
+                    BetterPrintRowNumbers(curr_row);
+
+                    if (y_axis < 8)
+                    {
+                        BetterPrintRowMid();
+                    }
+                    else
+                    {
+                        BetterPrintRowBot();
+                    }
+
+                }
+
+                // BetterPrintRowBot();
+
+                Console.Write("\n");
+            }
+        }
+
         static void PrintRowTopBot(int index)
         {
             for (int col = 1; col <= 9; col++)
@@ -117,6 +223,8 @@ namespace Sudokube
                 Console.Write("\n");
             }
         }
+
+        
 
         void PuzzleGenerationSingle(char num)
         {

@@ -71,8 +71,8 @@ namespace Sudokube
             Sudokube user_puzzle = new Sudokube();
 
 
-
-            user_puzzle.PrintFullPuzzleZ();
+            user_puzzle.BetterPrintFullPuzzleZ();
+            //user_puzzle.PrintFullPuzzleZ();
         }
     }
 }
